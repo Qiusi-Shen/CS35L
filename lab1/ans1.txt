@@ -1,0 +1,76 @@
+1: man -k keyword
+
+2: whereis cp
+   cp: /user/bin/cp /usr/share/man/man1/cp.1.gz
+   /usr/share/man/man1p/cp.1p.gz
+   whereis wc
+   wc: /usr/bin/wc /usr/share/man/man1/wc.1.gz
+   /usr/share/man/man1p/wc.1p.gz
+
+3: find /usr/bin -executable -name ?
+   /usr/bin/[
+   /usr/bin/w
+   /usr/bin/X
+
+4: readlink /usr/bin/emacs Enter
+   /etc/alternatives/emacs
+
+5: g+s set group id to execution
+   o-x remove permission to excute from others
+
+6: find -type f -mtime -21
+
+7: find -type d -mtime -21 
+
+8: find /usr/bin -type l
+   247
+
+9: cd /usr/lib Enter
+   ls -lt
+   Oldest regular file is:
+   -rwxr-xr-x  1 root root  414996 Jun 28 2016 libfreeblpriv3.so
+
+10: man locale
+    man localedef
+    localedef is to compile locale definition files.
+
+11: C-h a sort 
+   Buffer-menu-sort
+   sort-columns
+   sort-fields
+   sort-lines
+   sort-numeric-fields
+   sort-pages
+   sort-paragraphs
+   sort-regexp-fields 
+   tabulated-list-col-sort
+   tabulated-list-sort
+
+12: C-h k command
+    
+    C-M-a 
+    Move backward to the beginning of defun.
+    C-M-b
+    Move backward until encountering the beginning of a word.
+    C-M-c
+    Capitalize the following word, moving over.
+    C-M-d 
+    Kill characters forward until encountering the end of a word.
+    C-M-e
+    Move forward to next end of sentence.
+    C-M-f
+    Move point forward ARG words
+    C-M-g
+    C-M-h
+    Put mark at the end of this defun, point at beginning.
+
+13: C-h k C-g
+    C-g abort current cunning command
+
+14: C-h f yank
+    Reinsert the most recently kill, which is the stretch of killed test
+    most recently killed OR yanked. 
+
+15: cd /usr/bin Enter ls -l
+    emacs Enter C-x d Backspace Backspace ls -l
+    They are the same.
