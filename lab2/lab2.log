@@ -1,0 +1,88 @@
+locale
+right now it is LC_CTYPE="en_US.UTF-8"
+
+export LC_ALL='C'
+change that enironment to standard C.
+
+locale
+To make sure it change to standard C.
+
+sort /usr/share/dict/words > words
+To sort the file in the directoy /usr/share/dict/words
+and save it as a file named words
+
+-ls
+To make sure there is a file named words
+
+wget http://web.cs.ucla.edu/classes/spring17/cs35L/assign/assign2.html
+To get the HTML of this web page.
+
+cp assign2.html assign2.txt
+To get a text containing that HTML of this page.
+
+tr -c 'A-Za-z' '[\n*]' < assign2.txt
+The output are all the words of that txt file one per line.
+And replace non letter word with an empty line.
+
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt
+The output are all the words of that txt file one per line.
+Then delte all the non letter word. So all the empty line are disappeared
+compared to the last question.
+
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort
+The output are all the words of that txt file on per line.
+Without empty line and all the words are in alphabetical order.
+
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort -u
+The output are all the words of that txt file on per line.
+Without empty line and all the words are in alphabetical order.
+All the duplicated words are removed
+
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort -u | comm - words
+It use the list from previous command to compare to the word list
+It has three columns, the first one is the words only appear in the
+assign2.txt. The second command is the words only appear in the words.
+The third column is appeared in both of the files.
+
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort -u | comm -23 - words
+output the lines that are only appear in the tr -cs 'A-Za-z' '[\n*]'
+< assign2.txt | sort -u command. One word per line. No empty line.
+
+wget http://mauimapp.com/moolelo/hwnwdseng.htm
+To get a copy of "English to Hawaiian" web page.
+
+grep -E '<td>.*<\/td>'
+remove everything except for <td>word</td>
+
+sed '/<td><\/td>/d' 
+remove  <td>empty</td>
+
+sed 's/<td>\(.*\)<\/td>/\1/g'
+remove tag <td> and tag </td>
+
+sed -n 2~2p
+Extract only the Hawaiian words
+
+sed 's/<u>\(.\)<\/u>/\1/g'
+delet <u> </u> within a word
+
+tr , '\n'  
+replace the comma with newline
+
+sed 's/^[ \t]*//' 
+delete all the leading space
+
+tr ' ' '\n' | sed '/^$/d'
+delete beginning ^$
+
+sed "s/\`/'/g"
+replace ` with '
+
+tr A-Z a-z
+Treat upper case as lower case
+
+sed "/[^pkmnwlhaeiou']/d"
+delete improperly formatted letter
+
+sort -u
+sort the words
