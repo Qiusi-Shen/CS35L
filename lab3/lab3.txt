@@ -1,0 +1,56 @@
+wget ftp://ftp.gnu.org/gnu/coreutils/coreutils-7.6.tar.gz
+download the file
+
+tar -xzvf coreutils-7.6.tar.gz
+unzip the file
+
+cd coreutils-7.6
+change to that directory
+
+./configure --prefix=/u/cs/ugrad/qiusi/coreutilsInstall
+creat that make file
+
+make install
+compile that make file
+
+cd ..
+go back to main menu
+
+export LC_ALL='en_US.UTF-8'
+change the locale
+
+cd coreutils-7.6
+cd src
+
+vim brady_patch
+to creat a patch and copy the patch from website and save it
+
+patch -p1 < brady_patch
+run the patch it will ask you which file to compile
+Then i typed /src/lr.c
+
+After I applied the patch I make the file again
+
+make
+make install
+
+The files are updated
+
+To test that patch I created some file
+touch now
+touch -t 201502020202 old
+
+then i typed ls -l to see the date format
+It is correct.
+
+cd ~/coreutilsInstall
+change the direction
+
+Then bin/ls -l
+the format right now is.
+drwxr-xr-x 2 qiusi csugrad 8192 Apr 18 11:29 bin
+drwxr-xr-x 3 qiusi csugrad 4096 Apr 18 11:23 lib
+drwxr-xr-x 5 qiusi csugrad 4096 Apr 18 11:23 share
+
+It is the correct format
+

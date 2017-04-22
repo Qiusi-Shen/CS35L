@@ -1,0 +1,42 @@
+Q1
+
+It is necessary. "goto case_long_iso_time_style;" will cause
+we goto the long iso time style. After we delete this lane,
+that command will run and will not cause that trouble.
+
+Q2
+
+It can not be understand by foreigners. Users that dont speack english
+format date will cause this kind of trouble.
+
+Q3
+wget http://web.cs.ucla.edu/classes/spring17/cs35L/assign/randline.py
+
+python randline.py /dev/null
+The display is following
+
+Traceback (most recent call last):
+  File "randline.py", line 70, in <module>
+    main()
+  File "randline.py", line 64, in main
+    sys.stdout.write(generator.chooseline())
+  File "randline.py", line 34, in chooseline
+    return random.choice(self.lines)
+  File "/usr/local/cs/Python-2.7.12/lib/python2.7/random.py",
+  line 275, in choice
+  return seq[int(self.random() * len(seq))]
+  # raises IndexError if seq is empty
+IndexError: list index out of range
+
+Because the function random.choice will become undefined behavior
+if the file is empty.
+
+Q4
+python3 randline.py
+
+File "randline.py", line 65
+    except IOError as (errno, strerror):
+                      ^
+SyntaxError: invalid syntax
+
+Because the argument "except...as" cannot be a tuple.
