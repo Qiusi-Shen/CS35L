@@ -1,0 +1,106 @@
+I created 100 10000 1000000 words size file to test all the command
+
+//size 100 below is the result I got
+
+time ./sfrob < 100.txt
+real    0m0.002s
+user    0m0.000s
+sys     0m0.001s
+
+time ./sfrobu < 100.txt
+real    0m0.002s
+user    0m0.000s
+sys     0m0.001s
+
+time ./sfrobs < 100.txt
+real    0m0.011s
+user    0m0.005s
+sys     0m0.005s
+
+time ./sfrobu -f  < 100.txt
+real    0m0.002s
+user    0m0.000s
+sys     0m0.002s
+
+time ./sfrobs -f < 100.txt
+real    0m0.010s
+user    0m0.004s
+sys     0m0.008s
+
+//size 1000 below is the result I got
+
+time ./sfrob < 1000.txt
+real    0m0.005s
+user    0m0.003s
+sys     0m0.004s
+
+time ./sfrobu < 1000.txt
+real    0m0.008s
+user    0m0.003s
+sys     0m0.004s
+
+time ./sfrobs < 1000.txt
+real    0m0.011s
+user    0m0.005s
+sys     0m0.007s
+
+time ./sfrobu -f  < 1000.txt
+real    0m0.002s
+user    0m0.000s
+sys     0m0.002s
+
+time ./sfrobs -f < 1000.txt
+real    0m0.010s
+user    0m0.004s
+sys     0m0.008s
+
+
+//size 10000
+
+time ./sfrob < 10000.txt
+real    0m1.017s
+user    0m0.355s
+sys     0m0.111s
+
+time ./sfrobu < 10000.txt
+real    0m0.879s
+user    0m0.412s
+sys     0m0.232s
+
+time ./sfrobs < 10000.txt
+real    0m1.045s
+user    0m0.455s
+sys     0m0.034s
+
+//size 1000000
+
+time ./sfrob < 100000.txt
+real    0m0.178s
+user    0m0.074s
+sys     0m0.011s
+   	  
+time ./sfrobu < 100000.txt
+real    0m0.494s
+user    0m0.059s
+sys     0m0.431s
+   	   
+time ./sfrobs.sh < 100000.txt
+real    0m0.104s
+user    0m0.017s
+sys     0m0.033s
+   	   
+time ./sfrobu -f < 100000.txt
+real    0m0.585s
+user    0m0.114s
+sys     0m0.378s
+   	      
+time ./sfrobs.sh -f < 100000.txt
+real    0m0.112s
+user    0m0.037s
+sys     0m0.027s
+
+From the data i got from the lab.
+As the size of file the time, it cost more time to
+compile.
+The sfrobu cost more time than other command.
+The shell script used least amount of time.
