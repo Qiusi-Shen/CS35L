@@ -1,0 +1,41 @@
+$ sort --version
+First I checked the version of sort is 8.27 which is fine.
+
+$ od -An -t f4 -N 40000000 < /dev/urandom | tr -s ' ' '\n' > input.txt
+
+$ emacs input.txt
+go into that file and delete the first line.
+
+$ wc -l input.txt
+count the lines in the file
+
+Then I test the run time to compare perfrmance.
+
+$ time -p sort -g < input.txt > /dev/null
+
+real 20.42
+user 112.12
+sys 0.46
+
+$ time -p sort -g --parallel=1 < input.txt > /dev/urandom
+real 101.16
+user 100.97
+sys 0.20
+
+$ time -p sort -g --parallel=2 < input.txt > /dev/null
+real 55.17
+user 105.40
+sys 0.23
+
+$ time -p sort -g --parallel=4 < input.txt > /dev/null
+real 32.36
+user 108.74
+sys 0.38
+
+$ time -p sort -g --parallel=8 < input.txt > /dev/null
+real 20.90
+user 111.83
+sys 0.46
+
+The real time became short while the user and sys time stay
+nearly the same.
