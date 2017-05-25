@@ -1,0 +1,77 @@
+using that CD to go into ubuntu system
+
+choose the try ubuntu
+
+$ sudo apt-get install openssh-server
+$ sudo apt-get install openssh-client
+
+Install all the required openSSH
+
+client part
+-----------------------------------------
+
+$ ssh-keygen
+To create the key
+
+He gave me his server ip address 10.97.85.65
+
+$ ping 10.97.85.65
+
+$ ssh-copy-id -i client@10.97.85.65
+click yes and add the key
+
+I copied the public key to the server for key-based
+authentication
+
+$ ssh-add
+add a private key to authentication agent
+
+$ ssh client@10.97.85.65
+$ ssh -X client@10.97.85.65
+
+I run xterm on the server
+
+Then I created a file
+$ touch test.txt
+
+The server checked on his computer
+cd /home/client
+ls
+
+There is a file called test.txt
+
+Server part
+-----------------------------------------------
+$ sudo apt-get install openssh-client
+
+I already did ssh-keygen so I don't need
+to do it again.
+
+$ sudo useradd -d /home/apple -m apple
+creat an account for the client on the server.
+
+I set the client name to be apple
+
+$ sudo passwd apple
+Create a password and I set is to "password"
+And I give it to my partener.
+
+$ cd /home/apple
+$ sudo mkdir .ssh
+
+create .ssh directory for new user
+
+$ sudo chown -R apple .ssh
+$ sudo chown 700 .ssh
+
+change ownership and permission on .ssh directory
+
+$ hostname -I
+
+I got my ip address
+10.97.85.56
+
+My partener created a file apple.txt on his computer
+
+$ ls
+I can see the apple.txt

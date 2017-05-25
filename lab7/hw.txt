@@ -1,0 +1,32 @@
+Qestion 1
+
+The network is still secure since it is encrypted through
+an authentication by public key. Since the private key is not
+available, the message can't be decrypted. A person can't get
+the private key through the public. So it is still secure.
+
+1)
+It is not secure
+Since the other teams had also tapped your keyboards and had
+observed all of your team's keystrokes. They are able to access
+the private key when it is authentication. The private key is
+also revealed. So they can have access to private key to decrypt
+all the data. So the connection is not secure.
+
+2)
+It is not secure.
+Since he other teams temporarily had physical control of the USB. They
+have the access to the system data files. In the ssh files, the public
+and the private keys are revealed.
+
+2
+gpg --verify this command will chech whether the public key
+and the signatures match or not. It is used to verify public
+keys. If the file is transfered, the process can be interupt by
+other users. The hacker can change the signatures and send it
+as the original signature. This will decrypt files and cause
+damage.
+
+To fix this problem, it is useful to post public key or detached
+signature file to the internet. The receiver can having the right
+key to verify dealing with the file transfer issue.
