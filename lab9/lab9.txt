@@ -1,0 +1,231 @@
+1.
+$ git clone https://git.savannah.gnu.org/git/diffutils.git
+get a copy of the Diffutils reposiroty:
+  
+2.
+$ git log > git-log.txt
+Get a log of change:
+first, cd diffutils, then run the below command:
+
+3.
+$ git tag > git-tags.txt
+Generaate a list of tags
+
+4.
+
+$ emacs git-log.txt
+$ C-s like-this
+
+I found that the commit is 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f
+
+$ git format-patch -1 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f \
+   --stdout > quote-patch.txt
+
+   I generate the patchand put it into quote-patch.txt
+
+5. Check out version 3.0
+   check out the version 3.0 and make a new branch named new3.0:
+$ git checkout -b 'new3.0' 'v3.0'
+
+M       NEWS
+M       README
+M       TODO
+M       doc/diagmeet.note
+M       ms/config.bat
+Switched to a new branch 'new3.0'
+
+6.
+$ patch -p1 < quote-patch.txt
+
+Apply the patch I got some error
+    
+Then i look through all the output to fingure out the problems:
+ 1) No such file exists
+ HACKING
+ doc/diffutils.texi
+ man/help1man
+
+ 2)Fail to patch:
+ README: at 9, 60
+ README-hacking: at 19
+ cfg.mk: at 29
+ src/diff.c: at 876, 906, 942
+ src/diff3.c: at 433
+
+
+7
+$ git status
+
+On branch my3.0
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   NEWS
+        modified:   README
+        modified:   TODO
+        modified:   doc/diagmeet.note
+        modified:   ms/config.bat
+        modified:   ms/config.site
+        modified:   po/en.po
+        modified:   src/analyze.c
+        modified:   src/cmp.c
+        modified:   src/context.c
+        modified:   src/diff.c
+        modified:   src/diff.h
+        modified:   src/diff3.c
+        modified:   src/dir.c
+        modified:   src/ifdef.c
+        modified:   src/io.c
+        modified:   src/sdiff.c
+        modified:   src/side.c
+        modified:   src/system.h
+        modified:   src/util.c
+        modified:   tests/help-version
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        NEWS.orig
+        README-hacking.orig
+        README-hacking.rej
+        README.orig
+        README.rej
+        cfg.mk.orig
+        cfg.mk.rej
+        git-log.txt
+        git-tags.txt
+        ms/config.site.orig
+        quote-patch.txt
+        src/cmp.c.orig
+        src/context.c.orig
+        src/diff.c.orig
+        src/diff.c.rej
+        src/diff.h.orig
+        src/diff3.c.orig
+        src/diff3.c.rej
+        src/dir.c.orig
+        src/sdiff.c.orig
+        src/system.h.orig
+        src/util.c.orig
+        tests/help-version.orig
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+8. Learn how to use the Emacs function:
+   vc-diff(C-x v =): this command is using to compare the corrent file with
+   the started file.
+   vc-revert(C-x v u): this command is using to revert the change that
+   we make to the last revision.
+
+9. Revert all the change
+   I am using Emacs to open all the file which are not ending with .c .
+   Then i open NEWS, README, TODO, doc/diagmeet.note, ms/config.bat,
+   ms/config.site, po/en.po, src/diff.h, src/system.h, tests/help-version
+
+   Then i used ve-revert(C-x v u) to revert all the changes that I make
+   to those files.
+
+   After it done, I discarded the changes to comments for the .c file
+   I am using the vc-diff(C-x v =)fucntion to check the changes
+
+   Then i used M-g to go to the line which specified by the vc-diff
+   I used M-% to replace the first ' with `
+
+   The following are the line number which is specified at the vc-diff
+   src/analyze.c: discarded all the changes
+   src/cmp.c: 36, 364, 377 can discarded the changes
+   src/context.c: All the changes, using ve-revert
+   src/diff.c: 40, 57 and the following three lines, 92
+   src/diff3.c: 35, 159, 1475
+   src/dir.c: 84, 125, 234
+   src/ifdef.c: All the changes, using ve-revert
+   src/io.c: All the changes. using ve-revert
+   src/sdiff.c: 35, 92, 747
+   src/side.c: All the changes, using ve-revert
+   src/util.c: 27, 121, 146, 190, 241, 270, 650
+
+10.
+    Copy rejected patched into the file
+    Since line number did not match the strings
+    Thus for diff.c and diff3.c, i searched it manually and change
+    ` to ' by using C-s.
+
+11.
+ $ git clean
+    Remove all the untracked files
+
+12.
+$ git status
+    On branch new3.0
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   src/cmp.c
+        modified:   src/diff.c
+        modified:   src/diff3.c
+        modified:   src/dir.c
+        modified:   src/sdiff.c
+        modified:   src/util.c
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        git-log.txt
+        git-tags.txt
+        lab9.txt
+        quote-patch.txt
+        src/#analyze.c#
+
+no changes added to commit (use "git add" and/or "git commit -a")
+   We can see there are half-dozen modified files
+
+$ git diff > quote-3.0-patch.txt
+
+13.
+
+$ ./bootstrap
+
+    gets.diff, after that, put it into the diffutils file, and using
+    patch -p0 < gets.diff to apply the patch
+
+    Then, I run ./configure and make
+
+    Then, I rum diff . - and diff -- help
+    All of these are give me the right quote mark
+
+14.
+ To do the Sanity test
+    
+   $ cd ..
+   $ mkdir diffutils-3.0
+   $ mkdir diffutils-3.0-patch
+
+   $ git clone https://git.savannah.gnu.org/git/diffutils.git
+   diffutils-3.0-orig
+
+    Cloned code into folder diffutils-3.0-orig
+
+   $ cd diffutils-3.0-orig
+
+   $ git checkout 'v3.0' -b 'o3.0'
+    Checkout the original v3.0 code.
+
+   $ cp ./src/*.c ../diffutils-3.0/
+    Copy the original source codes to diffutils-3.0
+
+   $ cd ..
+
+   $ cp ./diffutils/src/*.c ./diffutils-3.0-patch/
+    Copy the patched source codes to diffutils-3.0-patch
+
+   $ ./diffutils/src/diff -pru diffutils-3.0 diffutils-3.0-patch
+    > quote-3.0-test.txt
+    I used the patched diff to compare
+    
+15. 
+   $ diff -u quote-3.0-test.txt quote-3.0-patch.txt
+
+   Compare two patches.
+   Files are different. Difference is in ` and '.

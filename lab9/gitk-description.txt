@@ -1,0 +1,14 @@
+1. upper half:
+
+      In the left this window shows a tree of commits and the 
+      relationships with branches. It is gives information about branches.
+      is the  value of the selected commit.
+      In the mid the name and emails authors' information about
+      commits in the left window. In the right, the window shows the date 
+      of commits in the  row.
+
+2. lower half:
+
+      In the left the window shows the changelog of the commits,
+      usually with the actual file changes in diff file. Also in the right
+      Lists the files changed 
